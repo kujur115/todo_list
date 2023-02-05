@@ -10,7 +10,19 @@
 </head>
 <body>
     <!-- <h1>Codeial / <%= title %></h1> -->
-    <div id="one"></div>
+    <!-- <div id="one"></div> -->
+    <h1>TODO App</h1>
+    <div id="container">
+      <input placeholder="Add a task" class="add-task" id="add" data-helloWord="asdasdas"/>
+      <span id="total-tasks">Total tasks: <span id="tasks-counter">0</span></span>
+      <ul id="list">
+        <li>
+          <input type="checkbox" id="task1" data-id="12" class="custom-checkbox">
+          <label for="task1">Buy groceries</label>
+          <span class="delete" data-id="12"><i class="fas fa-times"></i></span>  
+        </li>
+      </ul>
+    </div>
     
 
     <script type="text/javascript" src="/js/home.js"></script>
