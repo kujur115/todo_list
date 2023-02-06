@@ -16,32 +16,51 @@
         <form action="/create-task" method="post" id="task-input">
           <div class="add-task">
             <label for="add" >Description</label>
-            <input placeholder="What do you need to do?" class="add-task1" id="add"/>
+            <input name="task" placeholder="What do you need to do?" class="add-task1" id="add"/>
           </div>
           <div id="cat-date">
-          <div class="add-task input1">
-            <label for="category" >Category</label>
-            <select name="category" id="category" class="add-task1">
-              <option value="">Choose a category</option>
-              <option value="personal">Personal</option>
-              <option value="work">Work</option>
-              <option value="school">School</option>
-              <option value="cleaning">Cleaning</option>
-              <option value="other">Other</option>
-            </select>
+            <div class="add-task input1">
+              <label for="category" >Category</label>
+              <select name="category" id="category" class="add-task1">
+                <option value="">Choose a category</option>
+                <option value="personal">Personal</option>
+                <option value="work">Work</option>
+                <option value="shopping">Shopping</option>
+                <option value="school">School</option>
+                <option value="cleaning">Cleaning</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="add-task input1">
+              <label for="dueDate">Due Date</label>
+              <input name="due-date" type="date" placeholder="dd/mm/yyyy" class="add-task1">
+            </div>
           </div>
-          <div class="add-task input1">
-            <label for="dueDate">Due Date</label>
-            <input type="date" placeholder="dd/mm/yyyy" class="add-task1">
+          <div id="btn-container">
+            <button type="submit" class="submitbtn"><i class="fas fa-plus"></i> Add Task</button>
+            <a href="/delete-done-task">
+              <button type="button" ><i class="fas fa-trash-can"></i> Delete task</button>
+            </a>
           </div>
+        </form>
+        <div id="total-tasks">
+          <p> Total tasks: <span id="tasks-counter">0</span></p>
         </div>
-    </form>
-        <span id="total-tasks">Total tasks: <span id="tasks-counter">0</span></span>
         <ul id="list">
           <li>
             <input type="checkbox" id="task1" data-id="12" class="custom-checkbox">
-            <label for="task1">Buy groceries</label>
-            <span class="delete" data-id="12"><i class="fas fa-times"></i></span>  
+            <label for="task1"> 
+              Buy groceries
+            </label>
+            <div class="date-cat">
+              <p>
+                <i class="fa-regular fa-calendar-days"></i> 20/01/2023
+              </p>
+              <p class="p-category">Shopping</p>
+
+            </div>
+
+            <span class="delete"><a href="/delete-task"><i class="fas fa-times"></i></a></span>  
           </li>
         </ul>
       </div>
