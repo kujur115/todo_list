@@ -1,9 +1,15 @@
 const express =require('express');
 const port=8000;
+
+
+const db=require('./config/mongoose');
+const Task =require('./models/task');
+
 const app=express();
 
 
 // use express routers..
+app.use(express.urlencoded());
 app.use('/',require('./routes'));
 
 app.set('view engine','ejs');

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script src="https://kit.fontawesome.com/8ca181da42.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/home.css">
 </head>
@@ -33,7 +34,7 @@
             </div>
             <div class="add-task input1">
               <label for="dueDate">Due Date</label>
-              <input name="due-date" type="date" placeholder="dd/mm/yyyy" class="add-task1">
+              <input name="date" type="date" placeholder="dd/mm/yyyy" class="add-task1">
             </div>
           </div>
           <div id="btn-container">
@@ -44,24 +45,26 @@
           </div>
         </form>
         <div id="total-tasks">
-          <p> Total tasks: <span id="tasks-counter">0</span></p>
+          <p> Total tasks: <span id="tasks-counter"><%= Task.length %></span></p>
         </div>
         <ul id="list">
+          <% for(let i of Task){%>
           <li>
-            <input type="checkbox" id="task1" data-id="12" class="custom-checkbox">
-            <label for="task1"> 
-              Buy groceries
+            <input type="checkbox" id="<%=i.id%>" data-id="12" class="custom-checkbox">
+            <label for="<%= i.id%>"> 
+              <%= i.task%>
             </label>
             <div class="date-cat">
               <p>
-                <i class="fa-regular fa-calendar-days"></i> 20/01/2023
+                <i class="fa-regular fa-calendar-days"></i> <%= i.date%>
               </p>
-              <p class="p-category">Shopping</p>
+              <p class="p-category"><%= i.category %></p>
 
             </div>
 
-            <span class="delete"><a href="/delete-task"><i class="fas fa-times"></i></a></span>  
+            <span class="delete"><a href="/delete-task?id=<%= i.id %>"><i class="fas fa-times"></i></a></span>  
           </li>
+          <%}%>
         </ul>
       </div>
     </div>
