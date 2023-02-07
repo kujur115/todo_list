@@ -13,6 +13,10 @@ const taskSchema =new mongoose.Schema({
     date:{
         type: String,
         required:false
+    },
+    done:{
+        type: Boolean,
+        required: true
     }
 });
 

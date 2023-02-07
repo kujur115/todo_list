@@ -50,10 +50,14 @@
         <ul id="list">
           <% for(let i of Task){%>
           <li>
-            <input type="checkbox" id="<%=i.id%>" data-id="12" class="custom-checkbox">
+            <a href="/toggle?id=<%= i.id %>">
+              <% let checked = i.done ? "checked" : "" %>
+            <input type="checkbox" id="<%=i.id%>" <%= checked %> class="custom-checkbox" >
             <label for="<%= i.id%>"> 
               <%= i.task%>
-            </label>
+            </label></a>
+            <!-- <p><%= i.task%></p></a> -->
+
             <div class="date-cat">
               <p>
                 <i class="fa-regular fa-calendar-days"></i> <%= i.date%>
