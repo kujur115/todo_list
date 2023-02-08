@@ -69,42 +69,52 @@ module.exports.deleteDoneTask=(req,res)=>{
 
 }
 
+let checkTrue=(id)=>{
+    var promise =new Promise((resolve,reject)=>{
+        Task.findById(id,(err,task)=>{
+            if(err){
+                // console.log(err);
+                reject(err);
+            }
+            resolve( (task.done)?false:true);
+
+        });
+    });
+    return promise;
+}
+
 module.exports.toggleTask= (req,res)=>{
     let id = req.query.id;
-    // let t;
-    // console.log('fdjfdjfd');
-    // Task.findById(id,(err,task)=>{
-    //     if(err){
-    //         console.log(err);
-    //         return;
-    //     }
-    //     t=task.done;
-    //     // console.log(task);
-    //     t=(t)?false:true;
-    //     console.log(t,"8888888888888888");
-    // }).then(()=>{
+    //   let t= Task.findById(id,(err,task)=>{
+    //         if(err){
+    //             console.log(err);
+    //             return;
+    //         }
+    //         return (task.done)?false:true;
 
+    //     });
 
-        Task.findOneAndUpdate(id,{$set:{done : {$eq:[false,"$present"]}}},(err)=>{
+    checkTrue(id).then((t)=>{
+        Task.findOneAndUpdate(id,{$set:{ done : t}},(err)=>{
             
             if(err){
                 console.log('error in updating the object',err);
                 return;
             }
             console.log("update done");
-            // task.done=(task.done)?false:true;
             return res.redirect('back');
         });
-
-        // Task.findOneAndUpdate(id,{ $set:{done: ('$done')?false:true}},(err)=>{
+    }).catch((err)=>{
+        console.log(`Errrrror :${err}`);
+    });
+        // Task.findOneAndUpdate(id,{$set:{ done : t}},(err)=>{
+            
         //     if(err){
         //         console.log('error in updating the object',err);
         //         return;
         //     }
         //     console.log("update done");
-        //     // task.done=(task.done)?false:true;
         //     return res.redirect('back');
-        // })
-
+        // });
 
     };
