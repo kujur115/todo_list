@@ -69,9 +69,11 @@ module.exports.deleteDoneTask=(req,res)=>{
 
 }
 
-let checkTrue=(id)=>{
+let checkTrue=(id1)=>{
+
+    // console.log(`id2:${id1}`);
     var promise =new Promise((resolve,reject)=>{
-        Task.findById(id,(err,task)=>{
+        Task.findById(id1,(err,task)=>{
             if(err){
                 // console.log(err);
                 reject(err);
@@ -85,18 +87,10 @@ let checkTrue=(id)=>{
 
 module.exports.toggleTask= (req,res)=>{
     let id = req.query.id;
-    //   let t= Task.findById(id,(err,task)=>{
-    //         if(err){
-    //             console.log(err);
-    //             return;
-    //         }
-    //         return (task.done)?false:true;
-
-    //     });
-
+    // console.log(`id1: ${id}`);
     checkTrue(id).then((t)=>{
-        Task.findOneAndUpdate(id,{$set:{ done : t}},(err)=>{
-            
+        Task.findByIdAndUpdate(id,{$set:{ done : t}},(err)=>{
+            // console.log(`id1: ${id}`);
             if(err){
                 console.log('error in updating the object',err);
                 return;
@@ -107,14 +101,6 @@ module.exports.toggleTask= (req,res)=>{
     }).catch((err)=>{
         console.log(`Errrrror :${err}`);
     });
-        // Task.findOneAndUpdate(id,{$set:{ done : t}},(err)=>{
-            
-        //     if(err){
-        //         console.log('error in updating the object',err);
-        //         return;
-        //     }
-        //     console.log("update done");
-        //     return res.redirect('back');
-        // });
+        
 
     };

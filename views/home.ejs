@@ -7,6 +7,7 @@
     <title><%= title %></title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script src="https://kit.fontawesome.com/8ca181da42.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
@@ -40,7 +41,7 @@
           <div id="btn-container">
             <button type="submit" class="submitbtn"><i class="fas fa-plus"></i> Add Task</button>
             <a href="/delete-done-task">
-              <button type="button" ><i class="fas fa-trash-can"></i> Delete task</button>
+              <button type="button" class="delete-btn"><i class="fas fa-trash-can"></i> Delete task</button>
             </a>
           </div>
         </form>
@@ -50,22 +51,19 @@
         <ul id="list">
           <% for(let i of Task){%>
           <li>
-            <a href="/toggle?id=<%= i.id %>">
+            
               <% let checked = i.done ? "checked" : "" %>
+              <div class="spacing">
             <input type="checkbox" id="<%=i.id%>" <%= checked %> class="custom-checkbox" >
             <label for="<%= i.id%>"> 
-              <%= i.task%>
-            </label></a>
+              <%= i.task%> <% if(i.date!=''){ %><i class="fa-regular fa-calendar-days"></i> <%= i.date%> <%}%>
+            </label><a href="/toggle?id=<%= i.id %>"></a>
             <!-- <p><%= i.task%></p></a> -->
 
-            <div class="date-cat">
-              <p>
-                <i class="fa-regular fa-calendar-days"></i> <%= i.date%>
-              </p>
+            <div class="category-cont <%= i.category %>">
               <p class="p-category"><%= i.category %></p>
-
             </div>
-
+          </div>
             <span class="delete"><a href="/delete-task?id=<%= i.id %>"><i class="fas fa-times"></i></a></span>  
           </li>
           <%}%>

@@ -63,7 +63,10 @@
     text-transform: uppercase;
     /* font-size: 1rem; */
     color: whitesmoke;
-    border: none;
+    border: none; 
+  }
+
+  .delete-btn{
     background-color: red;
   }
 
@@ -88,14 +91,25 @@
     padding: 10px;
     /* padding-left: 0; */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: inherit;
     align-items: center;
+    width: 100%;
   }
   ul li:hover {
     background: #f3f3f3;
   }
-  #list input {
+
+  /* .task-heading{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px;
+    margin: 0 10px;
+
+  } */
+   #list input {
     padding: 0;
     height: initial;
     width: initial;
@@ -106,15 +120,12 @@
   
   #list label {
     position: relative;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
     cursor: pointer;
   }
   
   #list label:before {
     content:'';
-    /* -webkit-appearance: none; */
+    
     background-color: transparent;
     border: 2px solid #0079bf;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
@@ -124,8 +135,8 @@
     vertical-align: middle;
     cursor: pointer;
     margin-right: 10px;
-  }
-  #list input:checked + label:after {
+  } 
+   #list input:checked + label:after {
     content: '';
     display: block;
     position: absolute;
@@ -136,25 +147,29 @@
     border: solid #fff;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
-  }
-  #list input:checked + label:before {
+  } 
+   #list input:checked + label:before {
     background: #0079bf;
   } 
   #list input:checked + label {
     text-decoration: line-through;
-  }
-  .date-cat{
+  } 
+  .category-cont{
     font-size: 0.7rem;
-    padding: 0;
+    padding: 3px;
+    width: 100px;
+    height: 20px;
+    margin: 0 10px;
   }
-  .date-cat p{
+  .category-cont p{
     margin: 0;
   }
   .p-category{
-    background-color: #0079bf;
+    /* background-color: #0079bf; */
     text-align: center;
     color: #f2f2f2;
     font-weight: 500;
+    text-transform: uppercase;
   }
   .delete {
     height: 28px;
@@ -182,4 +197,11 @@
     text-align: right;
     text-transform: capitalize;
     padding-right: 10px;
+  }
+
+  .spacing{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    /* background-color: steelblue; */
   }
