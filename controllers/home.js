@@ -1,6 +1,7 @@
+// require the task from model (database)
 const Task=require('../models/task');
 
-
+// conttrller for homepage
 module.exports.home=function(req,res){
     // return res.end('<h1>Express is up for Coderial</h1>');
     // console.log(task)
@@ -24,6 +25,7 @@ module.exports.home=function(req,res){
     // });
 }
 
+// controller for creating task
 module.exports.createTask=(req,res)=>{
     Task.create({
         task: req.body.task,
@@ -43,6 +45,7 @@ module.exports.createTask=(req,res)=>{
 
 };
 
+// controller for deleting a particular task
 module.exports.deleteTask=function(req, res){
     // console.log(req.query);
     let id = req.query.id
@@ -56,6 +59,7 @@ module.exports.deleteTask=function(req, res){
     });
 };
 
+// controller for deleting done task
 module.exports.deleteDoneTask=(req,res)=>{
 
     Task.deleteMany({done:true},(err)=>{
@@ -69,25 +73,30 @@ module.exports.deleteDoneTask=(req,res)=>{
 
 }
 
-let checkTrue=(id1)=>{
 
-    // console.log(`id2:${id1}`);
-    var promise =new Promise((resolve,reject)=>{
-        Task.findById(id1,(err,task)=>{
-            if(err){
-                // console.log(err);
-                reject(err);
-            }
-            resolve( (task.done)?false:true);
-
-        });
-    });
-    return promise;
-}
-
+// controller to toggle the done task
 module.exports.toggleTask= (req,res)=>{
     let id = req.query.id;
     // console.log(`id1: ${id}`);
+
+    // function to check the value of task which returns a promise
+    let checkTrue=(id1)=>{
+
+        // console.log(`id2:${id1}`);
+        var promise =new Promise((resolve,reject)=>{
+            Task.findById(id1,(err,task)=>{
+                if(err){
+                    // console.log(err);
+                    reject(err);
+                }
+                resolve( (task.done)?false:true);
+    
+            });
+        });
+        return promise;
+    }
+
+    // based on the returned value, update the task 
     checkTrue(id).then((t)=>{
         Task.findByIdAndUpdate(id,{$set:{ done : t}},(err)=>{
             // console.log(`id1: ${id}`);
@@ -100,6 +109,7 @@ module.exports.toggleTask= (req,res)=>{
         });
     }).catch((err)=>{
         console.log(`Errrrror :${err}`);
+        return;
     });
         
 

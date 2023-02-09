@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title and favicon and jQuery, fontawesome scripts -->
     <title><%= title %></title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <script src="https://kit.fontawesome.com/8ca181da42.js" crossorigin="anonymous"></script>
@@ -11,16 +12,21 @@
     <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
-    <!-- <h1>Codeial / <%= title %></h1> -->
+    
     <div id="app">
       <h1>TODO App</h1>
+
       <div id="container">
+<!-- input form -->
         <form action="/create-task" method="post" id="task-input">
+<!-- Description section -->
           <div class="add-task">
             <label for="add" >Description</label>
             <input name="task" placeholder="What do you need to do?" class="add-task1" id="add"/>
           </div>
+<!-- category and date section -->
           <div id="cat-date">
+            <!-- category section -->
             <div class="add-task input1">
               <label for="category" >Category</label>
               <select name="category" id="category" class="add-task1">
@@ -33,37 +39,50 @@
                 <option value="other">Other</option>
               </select>
             </div>
+            <!-- due date section -->
             <div class="add-task input1">
               <label for="dueDate">Due Date</label>
               <input name="date" type="date" placeholder="dd/mm/yyyy" class="add-task1">
             </div>
           </div>
+          <!-- button section -->
           <div id="btn-container">
             <button type="submit" class="submitbtn"><i class="fas fa-plus"></i> Add Task</button>
+            <!-- delete all done task section -->
             <a href="/delete-done-task">
               <button type="button" class="delete-btn"><i class="fas fa-trash-can"></i> Delete task</button>
             </a>
           </div>
         </form>
+        <!-- total task count section -->
         <div id="total-tasks">
           <p> Total tasks: <span id="tasks-counter"><%= Task.length %></span></p>
         </div>
+
+        <!-- task list section -->
         <ul id="list">
           <% for(let i of Task){%>
+
           <li>
             
               <% let checked = i.done ? "checked" : "" %>
               <div class="spacing">
+                <!-- input checkbox -->
             <input type="checkbox" id="<%=i.id%>" <%= checked %> class="custom-checkbox" >
+            <!-- task name and due date -->
             <label for="<%= i.id%>"> 
               <%= i.task%> <% if(i.date!=''){ %><i class="fa-regular fa-calendar-days"></i> <%= i.date%> <%}%>
-            </label><a href="/toggle?id=<%= i.id %>"></a>
-            <!-- <p><%= i.task%></p></a> -->
+            </label>
+            <!-- link to toggle done task -->
+            <a href="/toggle?id=<%= i.id %>"></a>
 
+            <!-- category section -->
             <div class="category-cont <%= i.category %>">
               <p class="p-category"><%= i.category %></p>
             </div>
           </div>
+
+          <!-- detete a particular task -->
             <span class="delete"><a href="/delete-task?id=<%= i.id %>"><i class="fas fa-times"></i></a></span>  
           </li>
           <%}%>
@@ -71,7 +90,7 @@
       </div>
     </div>
     
-
+<!-- javascript script -->
     <script type="text/javascript" src="/js/home.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-// $('input')
 
+// triggering the link when checkbox is checked and unchecked
 $('input[type=checkbox]').change(function() { 
     var item=$(this);    
    if(item.is(":checked")){
@@ -12,7 +12,7 @@ $('input[type=checkbox]').change(function() {
     }   
 });
 
-
+// changing category background color base on its contenet
 $('div.personal').css("background-color","#3DB881");
 $('div.work').css("background-color","#3d6ab8");
 $('div.shopping').css("background-color","#9a00ac");

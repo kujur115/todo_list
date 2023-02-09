@@ -1,6 +1,7 @@
+// require the mongoose lib
 const mongoose= require('mongoose');
 
-
+// create the schema for the database
 const taskSchema =new mongoose.Schema({
     task:{
         type: String,
@@ -21,7 +22,8 @@ const taskSchema =new mongoose.Schema({
 });
 
 
-
+// assigning the schema to task 
 const Task = mongoose.model('Task',taskSchema);
 
+// exprt the task
 module.exports = Task;
